@@ -201,10 +201,11 @@ A good amount of this project was fixing things that broke, so I wanted to write
 soc-automation/
 ├── src/
 │   ├── main.py            # main loop: polling, rating alerts, deciding actions
-│   └── wazuh_client.py    # Wazuh API login, Indexer searches, sending responses
+│   ├── wazuh_client.py    # Wazuh API login, Indexer searches, rating alerts, sending responses
+│   └── audit.py           # SQLite audit log and tracking which alerts were already handled
 ├── rules/
 │   └── local_rules.xml    # my custom rules 100100–100102
-├── .env.example           # WAZUH_HOST, WAZUH_USER, WAZUH_PASSWORD
+├── .env.example           # API and Indexer addresses and logins
 └── .gitignore
 ```
  
