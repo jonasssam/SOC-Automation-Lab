@@ -57,7 +57,7 @@ flowchart LR
 
 **Why:** Windows' default logs leave out a lot, like which processes started and what command line they ran. Sysmon fills in those gaps, and the agent sends everything to Wazuh so it's all in one place.
 
-<img width="1271" height="882" alt="05-wazuh-agent-active" src="https://github.com/user-attachments/assets/9357d213-f51d-4a5f-b758-28ec93762c85" />
+<img width="1271" height="100" alt="01-agent-enrolled" src="https://github.com/user-attachments/assets/c845554f-e1f7-4f00-8253-30ff0ff126af" />
 (Image #1- Windows agent enrolled and active on the Wazuh manager)
 
 <img width="1025" height="850" alt="07-sysmon-installed-configured" src="https://github.com/user-attachments/assets/cc9944f7-f67b-492b-aeef-fe949663f833" />
@@ -157,7 +157,7 @@ The Wazuh login info lives in a `.env` file that's excluded from Git, so no pass
 - On `add`, creates an inbound firewall rule named `SOC-Automation-Block-<IP>` (skipping it if that IP is already blocked). On `delete`, it removes the rule.
 - Writes every action to `custom-response.log` as BLOCKED, UNBLOCKED, or ERROR.
 
-<img width="1282" height="884" alt="43-python-source-ip-extraction" src="https://github.com/user-attachments/assets/1348c6f6-8a5f-428d-9709-18c92d2520aa" />
+<img width="1282" height="98" alt="10-python-ip-extraction" src="https://github.com/user-attachments/assets/ccdc513f-9fa0-466c-b7c1-ec6517d4c83d" />
 (Image #10- The script reading a failed login alert: HIGH severity, action RESPOND, source IP 192.168.100.10)
 
 <img width="1282" height="899" alt="53-soc-automation-final-response" src="https://github.com/user-attachments/assets/9f4357c7-e2f5-43f4-9f4f-32c6286e93d7" />
