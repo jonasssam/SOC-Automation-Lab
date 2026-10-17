@@ -1,0 +1,37 @@
+<!-- Custom detection rules for the SOC Automation Lab -->
+<!-- Location on the Wazuh manager: /var/ossec/etc/rules/local_rules.xml -->
+
+<group name="local,windows,">
+
+  <!-- Encoded PowerShell (Sysmon Event ID 1) -->
+  <rule id="100100" level="10">
+    <if_sid>61603</if_sid>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\powershell\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(-enc|-encodedcommand)\b</field>
+    <description>Suspicious encoded PowerShell command detected on $(win.system.computer)</description>
+    <mitre>
+      <id>T1059.001</id>
+    </mitre>
+  </rule>
+
+  <!-- File created in C:\Users\Public (Sysmon Event ID 11) -->
+  <rule id="100101" level="8">
+    <field name="win.system.eventID">11</field>
+    <field name="win.eventdata.targetFilename" type="pcre2">(?i)\\\\Users\\\\Public\\\\.*</field>
+    <description>File created in Windows Public directory on $(win.system.computer)</description>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+  </rule>
+
+  <!-- Failed remote logon, Logon Type 3 (Security Event ID 4625) -->
+  <rule id="100102" level="10">
+    <if_sid>60122</if_sid>
+    <field name="win.eventdata.logonType">3</field>
+    <description>Remote failed authentication attempt on $(win.system.computer)</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+
+</group>
